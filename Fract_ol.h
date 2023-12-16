@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:31:39 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/15 15:00:15 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/16 13:54:14 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@
 # include <X11/keysym.h>
 # include <math.h>
 
-#define	X_CLOSE 17
+#define	X_CLOSE 33
 #define K_CLOSE 2
-
 
 
 
@@ -31,12 +30,19 @@ typedef struct	s_ps
 {
 	void	*mlx;
 	void	*win;
-	void *img;
-	char *addr;
+	void 	*img;
+	void 	*addr;
+	int		color;
 	int	bits_per_pixel;
 	int line_length;
 	int endian;
+	double x;
+	double y;
+	double xi;
+	double yi;
+	double x_off;
+	double y_off;
+	double zoom;
 }				t_ps;
-
 
 #endif
