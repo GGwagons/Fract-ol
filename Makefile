@@ -6,7 +6,7 @@
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 11:26:09 by miturk            #+#    #+#              #
-#    Updated: 2023/12/15 14:06:56 by miturk           ###   ########.fr        #
+#    Updated: 2023/12/19 17:45:24 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ FLAGS		=	-g -Wall -Werror -Wextra
 EXTRA		=	-lmlx -lXext -lX11 -lm
 RM			=	rm -f
 SRC			=	Fract_ol.c\
-				keypress.c\
-				colors.c\
+				Julia.c\
+				mandelbrot.c\
 				
 OBJS		=	$(SRC:.c=.o)
 
