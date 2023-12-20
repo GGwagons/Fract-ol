@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:31:39 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/19 17:46:36 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/20 15:56:41 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ typedef struct	s_ps
 	double	x_off;
 	double	y_off;
 	double	zoom;
-	double	img_old;
-	double	re_old;
+	double	z_img;
+	double	z_real;
 	double	re_new;
 	double	img_new;
-	double	img_pix;
-	double	re_pix;
+	double	c_img;
+	double	c_real;
 	double	arrow_x;
 	double	arrow_y;
 	
@@ -68,13 +68,17 @@ void	init_mlx(t_ps *d_list);
 int		ft_draw_img(t_ps *d_list);
 int		key_hook(int key, t_ps *d_list);
 int		ft_zoom(int key, int x, int y, t_ps *d_list);
+int		ft_arrow_position(int x, int y, t_ps *d_list);
+
 void	ft_cal_mandelbrot(t_ps *d_list);
 void	ft_mandelbrot(t_ps	*d_list);
 void	ft_color(t_ps *d_list, int i);
 int		ft_is_mandelbrot(t_ps *d_list);
+void	set_madelbrot_fractol(t_ps *d_list);
 
 void	ft_julia(t_ps *d_list);
 void	ft_cal_julia(t_ps *d_list);
 int		ft_is_julia(t_ps *d_list);
+void	set_julia_fractol(t_ps *d_list);
 
 #endif

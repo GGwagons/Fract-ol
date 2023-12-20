@@ -6,7 +6,7 @@
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 11:26:09 by miturk            #+#    #+#              #
-#    Updated: 2023/12/19 17:45:24 by miturk           ###   ########.fr        #
+#    Updated: 2023/12/20 15:43:24 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RM			=	rm -f
 SRC			=	Fract_ol.c\
 				Julia.c\
 				mandelbrot.c\
+				key_press.c\
 				
 OBJS		=	$(SRC:.c=.o)
 

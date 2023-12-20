@@ -6,11 +6,29 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 11:08:40 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/19 17:35:43 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/20 15:38:41 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fract_ol.h"
+
+void	set_madelbrot_fractol(t_ps *d_list)
+{
+	d_list->x = 0;
+	d_list->y = 0;
+	d_list->x_off = 0.0;
+	d_list->y_off = 0.0;
+	d_list->zoom = 1;
+	d_list->color = 0x250697;
+	d_list->endian = 0;
+	d_list->line_length = 0;
+	d_list->max_iter = 100;
+	d_list->name = MANDELBROT;
+	d_list->c_real = 0.0;
+	d_list->c_img = 0.0;
+	d_list->arrow_x = 0;
+	d_list->arrow_y = 0;
+}
 
 void	ft_mandelbrot(t_ps	*d_list)
 {
@@ -23,8 +41,8 @@ void	ft_mandelbrot(t_ps	*d_list)
 		while (d_list->x++ <= WIDTH)
 		{
 			ft_cal_mandelbrot(d_list);
-			d_list->img_old = 0;
-			d_list->re_old = 0;
+			d_list->z_img = 0;
+			d_list->z_real = 0;
 			d_list->img_new = 0;
 			d_list->re_new = 0;
 			i = ft_is_mandelbrot(d_list);
@@ -48,10 +66,10 @@ void	ft_color(t_ps *d_list, int i)
 // Fixes the scaling for the zoom and movement
 void	ft_cal_mandelbrot(t_ps *d_list)
 {
-	d_list->re_pix = 1 * (d_list->x - WIDTH / 2) / (0.5 * d_list->zoom * WIDTH);
-	d_list->re_pix = d_list->re_pix + d_list->x_off - 0.5;
-	d_list->img_pix = (d_list->y - HEIGHT / 2) / (0.5 * d_list->zoom * HEIGHT);
-	d_list->img_pix = d_list->img_pix + d_list->y_off;
+	d_list->c_real = 1 * (d_list->x - WIDTH / 2) / (0.5 * d_list->zoom * WIDTH);
+	d_list->c_real = d_list->c_real + d_list->x_off - 0.5;
+	d_list->c_img = (d_list->y - HEIGHT / 2) / (0.5 * d_list->zoom * HEIGHT);
+	d_list->c_img = d_list->c_img + d_list->y_off;
 }
 
 /*Checks if the real and img numbers are 
@@ -63,12 +81,12 @@ int	ft_is_mandelbrot(t_ps *d_list)
 	i = 0;
 	while (i++ < d_list->max_iter)
 	{
-		d_list->re_old = d_list->re_new;
-		d_list->img_old = d_list->img_new;
-		d_list->re_new = d_list->re_old * d_list->re_old
-			- d_list->img_old * d_list->img_old + d_list->re_pix;
-		d_list->img_new = 2 * d_list->re_old
-			* d_list->img_old + d_list->img_pix;
+		d_list->z_real = d_list->re_new;
+		d_list->z_img = d_list->img_new;
+		d_list->re_new = d_list->z_real * d_list->z_real
+			- d_list->z_img * d_list->z_img + d_list->c_real;
+		d_list->img_new = 2 * d_list->z_real
+			* d_list->z_img + d_list->c_img;
 		if (d_list->re_new * d_list->re_new
 			+ d_list->img_new * d_list->img_new > 4)
 			break ;
