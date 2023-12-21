@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:39:35 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/20 15:56:45 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/21 13:17:46 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int	key_hook(int key, t_ps *d_list)
 		d_list->x_off = d_list->x_off + (0.5 / d_list->zoom);
 	else if (key == XK_Left)
 		d_list->x_off = d_list->x_off - (0.5 / d_list->zoom);
-		//ft_zoom(key, d_list);
-	//else if (key == Butt)
-	
 	ft_draw_img(d_list);
 	return (0);
 }

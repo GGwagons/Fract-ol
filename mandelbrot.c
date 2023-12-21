@@ -6,14 +6,15 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 11:08:40 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/20 15:38:41 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/21 13:29:09 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fract_ol.h"
 
-void	set_madelbrot_fractol(t_ps *d_list)
+void	set_mandelbrot_fractol(t_ps *d_list)
 {
+	d_list->name = MANDELBROT;
 	d_list->x = 0;
 	d_list->y = 0;
 	d_list->x_off = 0.0;
@@ -23,7 +24,6 @@ void	set_madelbrot_fractol(t_ps *d_list)
 	d_list->endian = 0;
 	d_list->line_length = 0;
 	d_list->max_iter = 100;
-	d_list->name = MANDELBROT;
 	d_list->c_real = 0.0;
 	d_list->c_img = 0.0;
 	d_list->arrow_x = 0;

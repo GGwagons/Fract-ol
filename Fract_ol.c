@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:30:11 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/20 18:09:48 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/21 16:00:10 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,6 @@ void	ft_mlx_pixel_put(t_ps *d_list, int x, int y, int i)
 	
 }
 
-
-void	set_fractol(t_ps *d_list)
-{
-	d_list->x = 0;
-	d_list->y = 0;
-	d_list->x_off = 0.0;
-	d_list->y_off = 0.0;
-	d_list->zoom = 1;
-	d_list->color = 0x250697;
-	d_list->endian = 0;
-	d_list->line_length = 0;
-	d_list->max_iter = 100;
-	d_list->c_real = 0.0;
-	d_list->c_img = 0.0;
-	d_list->z_real = 0.0;
-	d_list->z_img = 0.0;
-	d_list->arrow_x = 0;
-	d_list->arrow_y = 0;
-	d_list->name = JULIA;
-
-	//else if (d_list->name == JULIA)
-	//	set_julia_fractol(d_list);
-}
-
 void	init_mlx(t_ps *d_list)
 {
 	d_list->mlx = mlx_init();
@@ -74,54 +50,82 @@ void	init_mlx(t_ps *d_list)
 		ft_close(d_list);
 }
 
-
-//	DISPLAY AND CALCULATE IMAGE!!
-
-
 int	ft_draw_img(t_ps *d_list)
 {
-	//if (d_list->name == 1)
-	//	ft_mandelbrot (d_list);
-	//else if (d_list->name == 2)
+	if (d_list->name == MANDELBROT)
+		ft_mandelbrot (d_list);
+	else if (d_list->name == JULIA)
 		ft_julia(d_list);
 	mlx_put_image_to_window(d_list->mlx, d_list->win, d_list->img, d_list->x, d_list->y);
 	return (0);
 }
 
-
-int main(void)
+double	ft_custom_args(char **argv)
 {
-	t_ps *d_list;
-
-	d_list = malloc(sizeof(t_ps));
-	if (!d_list)
-        return (1);
-	set_fractol(d_list);
-	init_mlx(d_list);
-	ft_draw_img(d_list);
-	mlx_hook (d_list->win, 17, 0L, ft_close, d_list);
-	mlx_key_hook(d_list->win, key_hook, d_list);
-	mlx_hook(d_list->win, 06, 1L<<6, ft_arrow_position, d_list);
-	mlx_hook(d_list->win, 04, 1L<<2, ft_zoom, d_list);
-	mlx_loop(d_list->mlx);
-	ft_close(d_list);
-	free(d_list);
+	if (argv[2] && argv[3])
+	{
+		if (argv[2])
+			ft_atod(argv[2]);
+		if (argv[3])
+			ft_atod(argv[3]);		
+	}
 	return (0);
 }
-/*
+
+double	ft_atod(const char *s)
+{
+	double	res1;
+	double	res2;
+	char	*str;
+	int		len;
+
+	str = (char *)s;
+	res1 = (double)ft_atoi(str);
+	while (*str != '\0' && *str != '.')
+		str++;
+	if (*str == '.')
+		str++;
+	res2 = (double)ft_atoi(str);
+	len = ft_strlen(str);
+	while (len--)
+	{
+		res2 = res2 / 10;
+	}
+	if (str[0] == '-')
+		return (res1 - res2);
+	else
+		return(res1 + res2);
+}
+
+int	ft_check_args(char **argv, t_ps *d_list)
+{
+	if (ft_strcmp(argv[1], "mandelbrot") == 0)
+		set_mandelbrot_fractol(d_list);
+	else if(ft_strcmp(argv[1], "julia") == 0)
+		set_julia_fractol(d_list, argv);
+	else
+	{
+		ft_putendl_fd("WRONG INPUT!", 2);
+		ft_putendl_fd("Available fractol: - mandelbrot\n\n\t\t   - julia\n", 2);
+		free(d_list);
+		exit (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_ps *d_list;
 
-	if (argc != 2)
+	if (argc < 2)
 	{
-		ft_putendl_fd("Incorect fractol\n", 1);
-		return (0);
+		ft_putendl_fd("Incorrect fractol", 2);
+		exit (1);
 	}
 	d_list = malloc(sizeof(t_ps));
 	if (!d_list)
 		return (-1);
-	set_fractol(d_list);
+	ft_check_args(argv, d_list);
 	init_mlx(d_list);
 	ft_draw_img(d_list);
 	mlx_hook (d_list->win, 17, 0L, ft_close, d_list);
@@ -132,4 +136,4 @@ int	main(int argc, char *argv[])
 	ft_close(d_list);
 	free(d_list);
 	return (0);	
-}*/
+}

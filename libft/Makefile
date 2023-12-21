@@ -6,7 +6,7 @@
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 11:02:40 by miturk            #+#    #+#              #
-#    Updated: 2023/09/19 15:11:16 by miturk           ###   ########.fr        #
+#    Updated: 2023/12/21 12:41:25 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,9 @@ SRC_FILES = ft_atoi.c \
 			ft_strtrim.c \
 			ft_substr.c \
 			ft_tolower.c \
-			ft_toupper.c  
+			ft_toupper.c \
+			ft_strcmp.c	
+
 
 OBJS = $(SRC_FILES:.c=.o)
 

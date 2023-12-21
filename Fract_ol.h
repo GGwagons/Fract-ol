@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:31:39 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/20 15:56:41 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/21 15:35:34 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@
 
 #define	X_CLOSE 33
 #define K_CLOSE 2
-#define WIDTH	500
-#define	HEIGHT	500
-#define SIZE 100
+#define WIDTH	400
+#define	HEIGHT	400
 #define MANDELBROT 1
 #define JULIA 2
 
 typedef struct	s_ps
 {
-	char	*fractol;
 	int		name;
 	void	*mlx;
 	void	*win;
@@ -45,8 +43,6 @@ typedef struct	s_ps
 	int 	max_iter;
 	double	x;
 	double	y;
-	double	x_img;
-	double	y_img;
 	double	x_off;
 	double	y_off;
 	double	zoom;
@@ -74,11 +70,14 @@ void	ft_cal_mandelbrot(t_ps *d_list);
 void	ft_mandelbrot(t_ps	*d_list);
 void	ft_color(t_ps *d_list, int i);
 int		ft_is_mandelbrot(t_ps *d_list);
-void	set_madelbrot_fractol(t_ps *d_list);
+void	set_mandelbrot_fractol(t_ps *d_list);
 
 void	ft_julia(t_ps *d_list);
-void	ft_cal_julia(t_ps *d_list);
 int		ft_is_julia(t_ps *d_list);
-void	set_julia_fractol(t_ps *d_list);
+void	set_julia_fractol(t_ps *d_list, char **argv);
+
+int		ft_check_args(char **argv, t_ps *d_list);
+double	ft_custom_args(char **argv);
+double	ft_atod(const char *s);
 
 #endif
