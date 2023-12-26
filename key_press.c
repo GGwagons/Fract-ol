@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:39:35 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/21 13:17:46 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/26 13:09:29 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	key_hook(int key, t_ps *d_list)
 		ft_close(d_list);
 	else if (key == XK_Up)
 		d_list->y_off = d_list->y_off - (0.5 / d_list->zoom);
-		//d_list->y_off = d_list->y_off - (0.5 * d_list->zoom);
 	else if (key == XK_Down)
 		d_list->y_off = d_list->y_off + (0.5 / d_list->zoom);
 	else if (key == XK_Right)
@@ -52,4 +51,40 @@ int	ft_arrow_position(int x, int y, t_ps *d_list)
 	d_list->arrow_x = x;
 	d_list->arrow_y = y;
 	return (0);
+}
+
+int	ft_close(t_ps *d_list)
+{
+	if (d_list->img)
+		mlx_destroy_image(d_list->mlx, d_list->img);
+	if (d_list->win)
+		mlx_destroy_window(d_list->mlx, d_list->win);
+	if (d_list->addr)
+		mlx_destroy_display(d_list->mlx);
+	free(d_list->mlx);
+	free(d_list);
+	exit (1);
+}
+
+double	ft_atof(const char *s)
+{
+	double	res1;
+	double	res2;
+	char	*str;
+	int		len;
+
+	str = (char *)s;
+	res1 = (double)ft_atoi(str);
+	while (*str && *str != '.')
+		str++;
+	if (*str == '.')
+		str++;
+	res2 = (double)ft_atoi(str);
+	len = ft_strlen(str);
+	while (len--)
+		res2 = res2 / 10;
+	if (str[0] == '-')
+		return (res1 - res2);
+	else
+		return (res1 + res2);
 }
