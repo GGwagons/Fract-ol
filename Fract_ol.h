@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:31:39 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/26 13:08:30 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/29 16:45:45 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 typedef struct s_ps
 {
+	int		i;
 	int		name;
 	void	*mlx;
 	void	*win;
@@ -37,7 +38,6 @@ typedef struct s_ps
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		key;
 	int		max_iter;
 	double	x;
 	double	y;
@@ -77,5 +77,7 @@ void	set_julia_fractol(t_ps *d_list, char **agrv);
 int		ft_check_args(char **argv, t_ps *d_list);
 double	ft_atof(const char *s);
 void	ft_custom(t_ps *d_list, char **argv);
+void	ft_num_check1(t_ps *d_list, char **argv);
+void	ft_num_check2(t_ps *d_list, char **argv);
 
 #endif

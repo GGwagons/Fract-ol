@@ -6,11 +6,11 @@
 #    By: miturk <miturk@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/15 11:26:09 by miturk            #+#    #+#              #
-#    Updated: 2023/12/20 15:43:24 by miturk           ###   ########.fr        #
+#    Updated: 2023/12/29 16:45:42 by miturk           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	Fract-ol
+NAME		=	fractol
 CC			=	cc
 FLAGS		=	-g -Wall -Werror -Wextra
 EXTRA		=	-lmlx -lXext -lX11 -lm
@@ -19,6 +19,7 @@ SRC			=	Fract_ol.c\
 				Julia.c\
 				mandelbrot.c\
 				key_press.c\
+				checks.c
 				
 OBJS		=	$(SRC:.c=.o)
 
@@ -53,4 +54,4 @@ fclean: 	clean
 
 re: 		fclean all
 
-.PHONY: all clean fclean re libft ft_printf/ minilibx-linux/ Fract-ol
+.PHONY: all clean fclean re libft ft_printf/ minilibx-linux/ fractol

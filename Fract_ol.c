@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:30:11 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/26 13:36:14 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/29 16:46:03 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,15 @@ int	ft_draw_img(t_ps *d_list)
 	return (0);
 }
 
-int	ft_check_args(char **argv, t_ps *d_list)
-{
-	if (ft_strcmp(argv[1], "mandelbrot") == 0)
-		set_mandelbrot_fractol(d_list);
-	else if (ft_strcmp(argv[1], "julia") == 0)
-		set_julia_fractol(d_list, argv);
-	else
-	{
-		ft_putendl_fd("WRONG INPUT!", 2);
-		ft_putendl_fd("Available fractol: - mandelbrot\n\n\t\t   - julia\n", 2);
-		free(d_list);
-		exit (1);
-	}
-	return (0);
-}
-
 int	main(int argc, char *argv[])
 {
 	t_ps	*d_list;
 
-	if (argc < 2 || (argc > 2 && argc < 4))
+	if ((argc < 2 || argc > 4) || argc == 3)
 	{
 		ft_putendl_fd("Incorrect fractol", 2);
+		ft_putendl_fd("Available fractol: Mandelbrot <No paramaters>\n", 2);
+		ft_putendl_fd("\t\t   Julia <no paramaters/two paramaters>\n", 2);
 		exit (1);
 	}
 	d_list = malloc(sizeof(t_ps));

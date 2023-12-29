@@ -6,7 +6,7 @@
 /*   By: miturk <miturk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:39:35 by miturk            #+#    #+#             */
-/*   Updated: 2023/12/26 13:09:29 by miturk           ###   ########.fr       */
+/*   Updated: 2023/12/29 16:41:31 by miturk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,4 @@ int	ft_close(t_ps *d_list)
 	free(d_list->mlx);
 	free(d_list);
 	exit (1);
-}
-
-double	ft_atof(const char *s)
-{
-	double	res1;
-	double	res2;
-	char	*str;
-	int		len;
-
-	str = (char *)s;
-	res1 = (double)ft_atoi(str);
-	while (*str && *str != '.')
-		str++;
-	if (*str == '.')
-		str++;
-	res2 = (double)ft_atoi(str);
-	len = ft_strlen(str);
-	while (len--)
-		res2 = res2 / 10;
-	if (str[0] == '-')
-		return (res1 - res2);
-	else
-		return (res1 + res2);
 }
